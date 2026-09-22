@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "烽火谋局 · 模块版",
+  "short_name": "烽火谋局",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101e23",
+  "theme_color": "#101e23",
+  "lang": "zh-CN",
+  "icons": [
+    {"src":"../fenghuo/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"../fenghuo/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}

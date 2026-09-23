@@ -1,5 +1,5 @@
 'use strict';
-const CACHE = 'fenghuo-v2-static-1';
+const CACHE = 'fenghuo-v2-static-2';
 const ASSETS = ['./', './index.html', './style.css', '../fenghuo/style.css', './manifest.webmanifest', '../fenghuo/icon.svg', '../fenghuo/icon-192.png', '../fenghuo/icon-512.png', './src/data.mjs', './src/game.mjs', './src/cards.mjs', './src/turns.mjs', './src/skills.mjs', './src/ai.mjs', './src/storage.mjs', './src/ui.mjs'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('fenghuo-v2-static-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));

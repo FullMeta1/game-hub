@@ -1,2 +1,34 @@
 /* The existing visual system is reused without modifying the old version. */
 @import url('../fenghuo/style.css');
+
+:root{--serif:Georgia,"Times New Roman",serif;--sans:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.brand{font-family:var(--sans);letter-spacing:-.03em}.brand small{letter-spacing:.08em}
+.seal{font-family:var(--serif);font-weight:700}
+.lobby-intro h1{font-family:var(--serif);letter-spacing:-.04em;line-height:1.1}
+.hero-option{min-height:328px}.hero-mark{font:700 43px/1.2 var(--sans);letter-spacing:-.06em;margin-bottom:30px}
+.hero-title{letter-spacing:.03em}.hero-name{font:600 22px/1.2 var(--serif);letter-spacing:-.025em;min-height:54px;margin:7px 0 8px}
+.hero-option .hero-desc{font-size:14px;line-height:1.45}
+.fighter-name{font:600 18px/1.25 var(--serif);letter-spacing:-.03em;flex-wrap:wrap}
+.portrait{font:700 24px var(--sans);letter-spacing:-.07em}
+.card{min-height:166px}.card .card-glyph{font:700 30px/1.1 var(--sans);letter-spacing:-.07em;margin:10px 0 5px}
+.card .card-name{font:600 16px/1.2 var(--serif);letter-spacing:-.02em;margin-left:0;text-align:center;min-height:38px;display:grid;place-items:center}
+.card .card-short{font-size:12px;line-height:1.3;text-align:center;margin-top:4px}
+.fighter-info,.fighter-meta,.journal li,.table-center p{font-size:13px}
+.rule-card b{min-width:110px}
+@media(max-width:1100px){.hero-option{min-height:248px}.hero-mark{font-size:32px;margin:12px 0 0}.hero-name{min-height:0}}
+@media(max-width:800px){
+  #battle{padding-bottom:170px}
+  .action-bar{position:fixed;left:0;right:0;bottom:0;z-index:10;max-height:42dvh;overflow:auto;padding:12px max(16px,calc((100vw - 740px)/2)) calc(12px + env(safe-area-inset-bottom));border-radius:0;box-shadow:0 -12px 35px #061014dc}
+  .action-bar>div:first-child{font-size:14px;line-height:1.45}
+  .action-buttons .button{min-height:44px}
+  .toast{bottom:calc(142px + env(safe-area-inset-bottom))}
+}
+@media(max-width:520px){
+  .topbar{gap:7px}.brand{font-size:16px;gap:7px}.brand small{display:none}.seal{width:30px;height:34px;font-size:20px}nav{gap:7px}.text-button{font-size:12px}
+  .lobby-intro h1{font-size:37px}.hero-option{min-height:225px;grid-template-columns:1fr;gap:2px;padding:12px}
+  .hero-mark{grid-row:auto;font-size:31px;margin:0 0 5px}.hero-title{font-size:11px}.hero-name{font-size:18px;min-height:0;margin:4px 0}
+  .hero-option .hero-skill,.hero-option .hero-desc{font-size:12px}.hero-option .hero-desc{line-height:1.35;margin-top:5px}
+  .fighter-name{font-size:15px}.fighter-info,.fighter-meta,.table-center p{font-size:12px}.portrait{font-size:17px}
+  .card{width:102px;min-width:102px;min-height:158px}.card .card-name{font-size:15px}.card .card-short{font-size:11px}
+  .action-buttons .button{font-size:13px}.toast{bottom:calc(148px + env(safe-area-inset-bottom))}
+}

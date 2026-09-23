@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101e23">
-  <meta name="description" content="六名原创武将、十二种卡牌，与 AI 友军并肩战斗。单机四人明阵策略卡牌。">
+  <meta name="description" content="Choose a commander, play twelve card types, and fight beside an AI ally in a four-player tactical card game.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>烽火谋局 · 模块版</title>
+  <title>Fenghuo Tactics · Browser Card Game</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="../fenghuo/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../fenghuo/icon-192.png">
@@ -16,24 +16,24 @@
 </head>
 <body>
   <div class="app">
-    <header class="topbar"><a class="brand" href="../"><span class="seal">烽</span><span>烽火谋局<small>MODULAR EDITION</small></span></a><nav aria-label="游戏工具"><button id="sound" class="text-button">音效</button><button id="rules" class="text-button">玩法</button><button id="new-game" class="text-button">换将</button></nav></header>
+    <header class="topbar"><a class="brand" href="../"><span class="seal">F</span><span>Fenghuo Tactics<small>FOUR-PLAYER CARD GAME</small></span></a><nav aria-label="Game tools"><button id="sound" class="text-button">Sound</button><button id="rules" class="text-button">Rules</button><button id="new-game" class="text-button">Commanders</button></nav></header>
     <main id="lobby">
-      <section class="lobby-intro"><div class="eyebrow">四人明阵 · 单机对战</div><h1>点将，入局。</h1><p>你与一名友军，对阵两名敌将。<br>牌有攻守，局有进退。</p></section>
-      <div class="selection-label"><span>选择你的武将</span><span class="muted">01 — 06</span></div>
-      <div id="hero-grid" class="hero-grid" role="group" aria-label="选择武将"></div>
-      <div class="lobby-bottom"><p id="record" class="muted"></p><div class="start-actions"><button id="resume" class="button secondary" hidden>继续上局</button><button id="start" class="button primary">以萧策出战 ↗</button></div></div>
-      <p class="lobby-note">无需账号 · 自动保存 · 支持离线游玩</p>
+      <section class="lobby-intro"><div class="eyebrow">SOLO · OPEN-TEAM 2v2</div><h1>Choose your commander.</h1><p>Fight beside an AI ally against two enemy commanders.<br>Play your hand, protect your team, and outlast Crimson.</p></section>
+      <div class="selection-label"><span>Choose a commander</span><span class="muted">01 — 06</span></div>
+      <div id="hero-grid" class="hero-grid" role="group" aria-label="Choose your commander"></div>
+      <div class="lobby-bottom"><p id="record" class="muted"></p><div class="start-actions"><button id="resume" class="button secondary" hidden>Resume game</button><button id="start" class="button primary">Play as Xiao Ce ↗</button></div></div>
+      <p class="lobby-note">No account · Autosaves on this device · Play offline after loading once</p>
     </main>
     <main id="battle" hidden>
-      <section class="battle-meta" aria-label="对局状态"><div><span class="eyebrow">青锋 <span class="versus">VS</span> 赤霄</span><h1 id="round-text"></h1></div><div class="meta-right"><span id="deck-text"></span><button id="speed" class="chip">速度 ×3</button></div></section>
-      <div class="battle-layout"><section class="table" aria-label="对战区域"><div id="opponents" class="opponent-row"></div><div class="table-center"><div id="turn-pill" class="turn-pill"></div><p id="table-hint"></p></div><div id="allies" class="ally-row"></div></section><aside class="journal"><div class="journal-title"><h2>战报</h2></div><ol id="log"></ol></aside></div>
-      <section class="hand-area"><div class="hand-heading"><div><h2>你的手牌 <span id="hand-count"></span></h2><p id="hand-hint"></p></div><button id="end-turn" class="button primary">结束回合</button></div><div id="hand" class="hand"></div><div class="action-bar"><div id="selection-detail"></div><div class="action-buttons"><button id="cancel" class="button secondary" hidden>取消</button><button id="skill" class="button secondary">技能</button><button id="play" class="button primary" disabled>选择手牌</button></div></div></section>
-      <div class="mobile-log"><button id="show-log" class="text-button">查看战报</button><span id="last-event"></span></div>
+      <section class="battle-meta" aria-label="Match status"><div><span class="eyebrow">AZURE <span class="versus">VS</span> CRIMSON</span><h1 id="round-text"></h1></div><div class="meta-right"><span id="deck-text"></span><button id="speed" class="chip">Speed ×3</button></div></section>
+      <div class="battle-layout"><section class="table" aria-label="Battlefield"><div id="opponents" class="opponent-row"></div><div class="table-center"><div id="turn-pill" class="turn-pill"></div><p id="table-hint"></p></div><div id="allies" class="ally-row"></div></section><aside class="journal"><div class="journal-title"><h2>Battle log</h2></div><ol id="log"></ol></aside></div>
+      <section class="hand-area"><div class="hand-heading"><div><h2>Your hand <span id="hand-count"></span></h2><p id="hand-hint"></p></div><button id="end-turn" class="button primary">End turn</button></div><div id="hand" class="hand"></div><div class="action-bar"><div id="selection-detail"></div><div class="action-buttons"><button id="cancel" class="button secondary" hidden>Cancel</button><button id="skill" class="button secondary">Skill</button><button id="play" class="button primary" disabled>Choose a card</button></div></div></section>
+      <div class="mobile-log"><button id="show-log" class="text-button">Battle log</button><span id="last-event"></span></div>
     </main>
-    <footer><span>烽火谋局 / v2</span><button id="install-help" class="text-button">添加到主屏幕</button></footer>
+    <footer><span>Fenghuo Tactics / v2</span><button id="install-help" class="text-button">Install on your phone</button></footer>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <dialog id="modal"><div class="modal-top"><span id="modal-eyebrow" class="eyebrow"></span><button id="close-modal" class="icon-button" aria-label="关闭弹窗">×</button></div><div id="modal-content"></div></dialog>
-  <noscript>需要启用 JavaScript 才能游玩。</noscript>
+  <dialog id="modal"><div class="modal-top"><span id="modal-eyebrow" class="eyebrow"></span><button id="close-modal" class="icon-button" aria-label="Close dialog">×</button></div><div id="modal-content"></div></dialog>
+  <noscript>Enable JavaScript to play.</noscript>
 </body>
 </html>

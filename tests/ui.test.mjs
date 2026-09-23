@@ -47,7 +47,7 @@ function arrange(h, types) {
 }
 
 test('UI: lobby -> battle -> commander skill -> persisted reload', () => {
-  const h = harness(); assert.match(h.elements.get('hero-grid').innerHTML, /苏晚棠/);
+  const h = harness(); assert.match(h.elements.get('hero-grid').innerHTML, /Su Wantang/);
   h.click('start'); assert.equal(h.elements.get('battle').hidden, false);
   const before = h.eval('game.player(0).hand.length'); h.click('skill');
   assert.equal(h.elements.get('play').disabled, false); h.click('play');
@@ -65,9 +65,19 @@ test('UI: selected attack requires a legal target then consumes the card', () =>
 });
 test('UI: end turn enters discard and does not trap the player', () => {
   const h = harness(); h.click('start'); arrange(h, ['strike','dodge','fire']); h.eval('game.player(0).hp=1;render();');
-  h.click('end-turn'); assert.match(h.elements.get('turn-pill').textContent, /弃牌/);
+  h.click('end-turn'); assert.match(h.elements.get('turn-pill').textContent, /Discard/);
   for (let i = 0; i < 2; i++) { h.card(h.eval('game.player(0).hand[0].id')); h.click('play'); }
   assert.notEqual(h.eval('game.state.turn'), 0); assert.equal(h.eval('game.player(0).hand.length'), 1);
+});
+test('UI: mobile target selection scrolls to battlefield, self-target cards stay in place', () => {
+  const h = harness(); h.click('start'); arrange(h, ['strike', 'draw']);
+  let scrolls = 0;
+  h.context.matchMedia = query => ({ matches: query.includes('max-width') });
+  h.table.scrollIntoView = () => { scrolls++; };
+  h.card(h.eval('game.player(0).hand.find(c => c.type === "draw").id'));
+  assert.equal(scrolls, 0);
+  h.card(h.eval('game.player(0).hand.find(c => c.type === "strike").id'));
+  assert.equal(scrolls, 1);
 });
 test('UI: swapping generals preserves save until explicit new game', () => {
   const h = harness(); h.click('start'); const before = h.saved.get('fenghuo.v2.match'); h.click('new-game');
@@ -93,5 +103,11 @@ test('UI: all static, module and offline resources exist', () => {
     for (const icon of manifest.icons) assert.ok(fs.existsSync(new URL(icon.src, base)), `Missing icon ${icon.src}`);
     const sw = fs.readFileSync(new URL('sw.js', base), 'utf8');
     for (const m of sw.match(/const ASSETS = \[([^\]]+)\]/s)[1].matchAll(/'([^']+)'/g)) assert.ok(fs.existsSync(new URL(m[1], base)), `Cache asset missing: ${m[1]}`);
+  }
+});
+test('UI: the playable English edition has no Chinese interface strings', () => {
+  for (const file of ['index.html','manifest.webmanifest','src/ui.mjs','src/data.mjs','src/game.mjs','src/cards.mjs','src/turns.mjs','src/skills.mjs']) {
+    const content = fs.readFileSync(new URL(`../fenghuo-v2/${file}`, import.meta.url), 'utf8');
+    assert.doesNotMatch(content,/\p{Script=Han}/u,file);
   }
 });

@@ -8,6 +8,7 @@
 .hero-option{min-height:328px}.hero-mark{font:700 43px/1.2 var(--sans);letter-spacing:-.06em;margin-bottom:30px}
 .hero-title{letter-spacing:.03em}.hero-name{font:600 22px/1.2 var(--serif);letter-spacing:-.025em;min-height:54px;margin:7px 0 8px}
 .hero-option .hero-desc{font-size:14px;line-height:1.45}
+.hero-option .hero-skill,.hero-option .hp-label,.hero-option .hero-desc{display:block}.hero-option .hero-skill{margin-right:0}.hero-option .hp-label{margin-top:3px}.hero-option .hero-desc{margin-top:10px}
 .fighter-name{font:600 18px/1.25 var(--serif);letter-spacing:-.03em;flex-wrap:wrap}
 .portrait{font:700 24px var(--sans);letter-spacing:-.07em}
 .card{min-height:166px}.card .card-glyph{font:700 30px/1.1 var(--sans);letter-spacing:-.07em;margin:10px 0 5px}
